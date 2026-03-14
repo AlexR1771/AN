@@ -1,0 +1,36 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+
+<section class="hero">
+  <h1>Power Supply Systems Design</h1>
+  <p class="lead">Digital garden about power electronics, transformers, EMC and engineering notes.</p>
+</section>
+
+<section>
+  <h2>Latest articles</h2>
+
+  {% if collections.posts and collections.posts | length > 0 %}
+    <div class="grid">
+      {% for post in collections.posts %}
+        <article class="card">
+          <h3><a href="{{ post.url }}">{{ post.data.title or post.fileSlug }}</a></h3>
+          {% if post.data.description %}
+            <p class="muted">{{ post.data.description }}</p>
+          {% else %}
+            <p class="muted">{{ post.templateContent | striptags | truncate(140) }}</p>
+          {% endif %}
+          <div class="meta-row">
+            <time>{{ post.date }}</time>
+            {% if post.data.tags %}
+              <span class="tags">{% for t in post.data.tags %}<a href="/tags/{{ t | slug }}">#{{ t }}</a>{% if not loop.last %} {% endif %}{% endfor %}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No articles yet — add files to <code>src/articles/</code>.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ title or site.title or "Power Supply Systems" }}</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand"><a href="/">Power Supply Systems</a></div>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+        <a href="/graph/">Graph</a>
+      </nav>
+      <div class="meta">Built with Eleventy · Hosted on Vercel</div>
+    </aside>
+
+    <main class="main">
+      {% block content %}{% endblock %}
+      <footer class="footer">© {{ "now" | date("yyyy") }} — A. R.</footer>
+    </main>
+  </div>
+</body>
+</html>

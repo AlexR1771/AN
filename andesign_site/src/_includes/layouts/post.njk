@@ -1,0 +1,21 @@
+{% extends "layouts/base.njk" %}
+{% block content %}
+
+<article class="post">
+  <header class="post-header">
+    <h1>{{ title }}</h1>
+    <div class="meta-row">
+      {% if date %}<time>{{ date }}</time>{% endif %}
+      {% if tags and tags | length > 0 %}
+        <span class="tags">{% for t in tags %}<a href="/tags/{{ t | slug }}">#{{ t }}</a>{% if not loop.last %} {% endif %}{% endfor %}</span>
+      {% endif %}
+    </div>
+    <hr />
+  </header>
+
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+</article>
+
+{% endblock %}
