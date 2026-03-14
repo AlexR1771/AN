@@ -1,36 +1,59 @@
-{% extends "layouts/base.njk" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ title }}</title>
 
-<section class="hero">
-  <h1>Power Supply Systems Design</h1>
-  <p class="lead">Digital garden about power electronics, transformers, EMC and engineering notes.</p>
-</section>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<section>
-  <h2>Latest articles</h2>
+<style>
 
-  {% if collections.posts and collections.posts | length > 0 %}
-    <div class="grid">
-      {% for post in collections.posts %}
-        <article class="card">
-          <h3><a href="{{ post.url }}">{{ post.data.title or post.fileSlug }}</a></h3>
-          {% if post.data.description %}
-            <p class="muted">{{ post.data.description }}</p>
-          {% else %}
-            <p class="muted">{{ post.templateContent | striptags | truncate(140) }}</p>
-          {% endif %}
-          <div class="meta-row">
-            <time>{{ post.date }}</time>
-            {% if post.data.tags %}
-              <span class="tags">{% for t in post.data.tags %}<a href="/tags/{{ t | slug }}">#{{ t }}</a>{% if not loop.last %} {% endif %}{% endfor %}</span>
-            {% endif %}
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>No articles yet — add files to <code>src/articles/</code>.</p>
-  {% endif %}
-</section>
+body{
+font-family: system-ui, sans-serif;
+max-width:900px;
+margin:auto;
+padding:40px;
+background:#fafafa;
+color:#222;
+}
 
-{% endblock %}
+h1{
+font-size:38px;
+margin-bottom:10px;
+}
+
+a{
+color:#0070f3;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+header{
+margin-bottom:40px;
+}
+
+article{
+margin-bottom:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>{{ title }}</h1>
+</header>
+
+<main>
+
+{{ content | safe }}
+
+</main>
+
+</body>
+</html>
